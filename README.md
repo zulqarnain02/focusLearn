@@ -12,7 +12,8 @@ This project is a comprehensive platform designed to create and  manage educatio
 
 - **Journey Management**: Allows users to create their own journeys and can add youtube videos, orelse just add url of youtube playlist it will automatically provides you list of chapters.
 ### Create New Journey
-![Login Page](screenshots/addjourney.png)
+![journey](https://github.com/user-attachments/assets/854621dc-37b2-4fcf-8382-43f05f2e8bc1)
+
 
 ### Journey Page
 ![Login Page](screenshots/journey.png)
