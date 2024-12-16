@@ -7,7 +7,8 @@ This project is a comprehensive platform designed to create and  manage educatio
 - **User Authentication**: Secure registration and login system to manage user accounts and access controls.
 
 ### Login Page
-![Login Page](screenshots/login.png)
+![login](https://github.com/user-attachments/assets/63996968-5263-4c0e-97a7-8da65b994028)
+
 
 - **Journey Management**: Allows users to create their own journeys and can add youtube videos, orelse just add url of youtube playlist it will automatically provides you list of chapters.
 ### Create New Journey
