@@ -19,29 +19,28 @@ This project is a comprehensive platform designed to create and  manage educatio
 ![journey](https://github.com/user-attachments/assets/854621dc-37b2-4fcf-8382-43f05f2e8bc1)
 
 
-
 - **Video Playback**: Integrated video player to view youtube videos without the distractions typically found on platforms like YouTube and beside which you can also take notes.
 
 - **Note-Taking**: Users can add and download notes related to their journeys, ensuring all important information is easily accessible.
 ### Video Player and Notes Taking
-![Video Player Page](screenshots/videoplayer.png)
-
-
+![videoplayer](https://github.com/user-attachments/assets/c7edd67b-94c1-4b58-b64c-2e206f5633b6)
 
 
 - **Profile Dashboard**: Provides an overview of user progress with visualizations such as charts and graphs.
 
 ### Progress Charts
-![Notes Page](screenshots/progress1.png)
+![progress1](https://github.com/user-attachments/assets/acf2cac1-5646-4c92-81dc-5bb2c9f87374)
+
 
 ### Overall Progress Graph
-![Notes Page](screenshots/progress2.png)
+![progress2](https://github.com/user-attachments/assets/3de80d6c-0f56-4357-b2f6-225300589788)
+
 
 - **Fork Other's Journeys**: You can also fork other's journeys to your's which are set to public and other's can also fork your's.
 
 
 ### Forking Journeys
-![Notes Page](screenshots/explore.png)
+![explore](https://github.com/user-attachments/assets/20dae475-5b15-43c3-b10c-efa0509c24f8)
 
 
 
