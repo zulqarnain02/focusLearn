@@ -28,7 +28,7 @@ const YouTubeApp = ({ videoId }) => {
         //     allowFullScreen
         //   />
         // ) : (
-          <YouTube videoId={extractVideoId(videoId)} opts={opts} />
+          <YouTube videoId={videoId} opts={opts} />
           // Use react-youtube if preferred
     
         

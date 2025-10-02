@@ -51,7 +51,7 @@ const Notes = () => {
 
   // Render the notes or a message if there's an error or no notes
   return (
-    <div className="p-4 dark:bg-gray-900 text-white px-48">
+    <div className="p-4 dark:bg-gray-900 text-white md:px-48">
       <h1 className="text-2xl font-bold mb-4">Notes</h1>
    
       {error && <div className="text-red-500">{error}</div>}

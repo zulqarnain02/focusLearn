@@ -41,7 +41,7 @@ const Home = () => {
   return (
     <>
       <section className=" min-h-[90vh] bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 antialiased ">
-        <h1 className="py-10 mx-auto max-w-screen-xl text-white font-bold text-2xl ">
+        <h1 className="py-12 mx-auto max-w-screen-xl text-white font-bold text-2xl ">
           Your Journeys
         </h1>
         <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
@@ -102,10 +102,10 @@ const Home = () => {
                     <th scope="col" className="px-4 py-3">
                       Journey Name
                     </th>
-                    <th scope="col" className="px-4 py-3">
+                    <th scope="col" className="px-4 py-3 hidden lg:table-cell">
                       Description
                     </th>
-                    <th scope="col" className="px-4 py-3">
+                    <th scope="col" className="px-4 py-3 hidden sm:table-cell">
                       Visibility
                     </th>
                     <th scope="col" className="px-4 py-3">
@@ -118,7 +118,7 @@ const Home = () => {
                 </thead>
 
                 <tbody>
-                  {data &&
+                  {data && data.length > 0 ? (
                     data.map((d, i) => (
                       <tr className="border-b dark:border-gray-700" key={d.id}>
                        
@@ -127,12 +127,12 @@ const Home = () => {
                           {d.title ? d.title : "Untitled"}
                         </Link>
                         </td>
-                        <td className="px-4 py-3 max-w-[12rem] truncate">
+                        <td className="px-4 py-3 max-w-[12rem] truncate hidden lg:table-cell">
                           {d.description
                             ? d.description
                             : "No description available"}
                         </td>
-                        <td className="px-4 py-3">{d.is_public?'public':'private'}</td>
+                        <td className="px-4 py-3 hidden sm:table-cell">{d.is_public?'public':'private'}</td>
                         <td className="px-4 py-3">
                           <Link to={`/notes/${d.id}`}>
                           <img src={notesLogo} width={'30px'} className=" cursor-pointer " alt="" />
@@ -148,27 +148,20 @@ const Home = () => {
                           </button>
                         </td>
                       </tr>
-                    ))}
-
-                  {/* <tr className="border-b dark:border-gray-700">
-                    <th
-                      scope="row"
-                      className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      <Link to={`/journey/${d.jId}`}>{d.journey}</Link>
-                    </th>
-                    <td className="px-4 py-3">{d.subject}</td>
-                    <td className="px-4 py-3 max-w-[12rem] truncate">
-                      {" "}
-                      {d.Description}{" "}
-                    </td>
-                    <td className="px-4 py-3">$2999</td>
-                    <td className="px-4 py-3 flex items-center justify-end">
-                      
-                    </td>
-
-                    
-                  </tr> */}
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="5" className="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
+                        <h3 className="text-xl font-semibold mb-4">Welcome to FocusLearn!</h3>
+                        <p className="mb-2">It looks like you haven't created any journeys yet. Here’s how to get started:</p>
+                        <ol className="list-decimal list-inside text-left inline-block">
+                          <li className="mb-2">Click the "Create New Journey" button to start a new learning path.</li>
+                          <li className="mb-2">Give your journey a title and a description to stay organized.</li>
+                          <li className="mb-2">Once your journey is created, you can add chapters and resources to it.</li>
+                        </ol>
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>

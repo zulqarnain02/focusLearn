@@ -8,10 +8,19 @@ const EditChapter = ({openEdit,setOpenEdit, chapterId, chDetails}) => {
     const open  = openEdit;
     const setOpen = setOpenEdit;
 
-    const [chapterName, setChapterName] = useState(chDetails?.title || "");
-    const [chapter_no, setChapter_No] = useState(chDetails?.chapter_no || "");
-    const [description, setDescription] = useState(chDetails?.description || "");
-    const [videoLink, setVideoLink] = useState(chDetails?.video_link || "") ;
+    const [chapterName, setChapterName] = useState( "");
+    const [chapter_no, setChapter_No] = useState("");
+    const [description, setDescription] = useState("");
+    const [videoLink, setVideoLink] = useState("") ;
+
+    useEffect(() => {
+      if (chDetails) {
+        setChapterName(chDetails.title || "");
+        setChapter_No(chDetails.chapter_no || "");
+        setDescription(chDetails.description || "");
+        setVideoLink(chDetails.video_link || "");
+      }
+    }, [chDetails]);
   
     const handleSubmit = async (e) => {
 
@@ -55,13 +64,13 @@ const EditChapter = ({openEdit,setOpenEdit, chapterId, chDetails}) => {
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           <DialogPanel
             transition
-            className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-md data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
+            className="relative w-full transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:max-w-lg data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
           >
            
       
-           <div class="w-full p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8">
+           <div class="w-full p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-lg dark:bg-gray-800 dark:border-gray-700 sm:p-8">
           <h2 class="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              Create New Chapter
+              Edit Chapter
           </h2>
           <form className="mt-4 space-y-4 lg:mt-5 md:space-y-5" onSubmit={handleSubmit}>
         <div>

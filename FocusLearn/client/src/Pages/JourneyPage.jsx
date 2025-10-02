@@ -28,6 +28,7 @@ const JourneyPage = () => {
   const [openEdit, setOpenEdit] = useState(false);
   const [jData, setJData] = useState("");
   const [progress, setProgress] = useState(0);
+  const [openActionMenu, setOpenActionMenu] = useState(null);
 
   
 
@@ -174,13 +175,7 @@ const JourneyPage = () => {
                       Chapter Title
                     </th>
                     <th scope="col" className="px-4 py-3">
-                      <span className="sr-only">Actions</span>
-                    </th>
-                    <th scope="col" className="px-4 py-3">
                       Actions
-                    </th>
-                    <th scope="col" className="px-4 py-3">
-                      <span className="sr-only">Actions</span>
                     </th>
                   </tr>
                 </thead>
@@ -216,35 +211,102 @@ const JourneyPage = () => {
                           </Link>
                         </td>
                         <td className="px-4 py-3">
-                          <button
-                            className="text-yellow-500 rounded hover:bg-slate-900 p-2 text-md font-semibold border"
-                            onClick={() => console.log("Add Notes clicked")}
-                          >
-                            Notes
-                          </button>
-                        </td>
+                          {/* Desktop buttons */}
+                          <div className="hidden items-center gap-2 md:flex">
+                            <button
+                              className="text-yellow-500 rounded hover:bg-slate-900 p-2 text-md font-semibold border"
+                              onClick={() => console.log("Add Notes clicked")}
+                            >
+                              Notes
+                            </button>
+                            <button
+                              className="text-green-500 rounded hover:bg-slate-900 p-2 text-md font-semibold border"
+                              onClick={() => {
+                                setChDetails(chapter);
+                                setChapterId(chapter.id);
+                                setOpenEdit(!openEdit);
+                              }}
+                            >
+                              Edit
+                            </button>
+                            <button
+                              className="text-red-500 rounded hover:bg-slate-900 p-2 text-md font-semibold border"
+                              onClick={() => deleteOneChapter(chapter.id)}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                          {/* Mobile dropdown */}
+                          <div className="relative inline-block text-left md:hidden">
+                            <div>
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  setOpenActionMenu(
+                                    openActionMenu === chapter.id
+                                      ? null
+                                      : chapter.id
+                                  )
+                                }
+                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                                id="dropdownMenuIconButton"
+                              >
+                                <svg
+                                  className="w-5 h-5"
+                                  aria-hidden="true"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  fill="currentColor"
+                                  viewBox="0 0 4 15"
+                                >
+                                  <path d="M3.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 6.041a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 5.959a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
+                                </svg>
+                              </button>
+                            </div>
 
-                        <td className="px-4 py-3 max-w-[12rem] truncate">
-                          <button
-                            className="text-green-500 rounded hover:bg-slate-900 p-2 text-md font-semibold border"
-                            onClick={() => {
-                              console.log(chapter.id);
-                              setChDetails(chapter);
-                              setChapterId(chapter.id);
-                              console.log(chDetails, "/n", chapterId);
-                              setOpenEdit(!openEdit);
-                            }}
-                          >
-                            Edit
-                          </button>
-                        </td>
-                        <td className="px-4 py-3 max-w-[12rem] truncate">
-                          <button
-                            className="text-red-500 rounded hover:bg-slate-900 p-2 text-md font-semibold border"
-                            onClick={() => deleteOneChapter(chapter.id)}
-                          >
-                            Delete
-                          </button>
+                            {openActionMenu === chapter.id && (
+                              <div
+                                className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-700"
+                                role="menu"
+                                aria-orientation="vertical"
+                                aria-labelledby="dropdownMenuIconButton"
+                              >
+                                <div className="py-1" role="none">
+                                  <button
+                                    onClick={() => {
+                                      console.log("Add Notes clicked");
+                                      setOpenActionMenu(null);
+                                    }}
+                                    className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600"
+                                    role="menuitem"
+                                  >
+                                    Notes
+                                  </button>
+                                  <button
+                                    onClick={() => {
+                                      setChDetails(chapter);
+                                      setChapterId(chapter.id);
+                                      setOpenEdit(!openEdit);
+                                      setOpenActionMenu(null);
+                                    }}
+                                    className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600"
+                                    role="menuitem"
+                                  >
+                                    Edit
+                                  </button>
+                                  <button
+                                    onClick={() => {
+                                      deleteOneChapter(chapter.id);
+                                      setOpenActionMenu(null);
+                                    }}
+                                    className="block w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600"
+                                    role="menuitem"
+                                  >
+                                    Delete
+                                  </button>
+                                </div>
+                              </div>
+                            )}
+                          </div>
                         </td>
                       </tr>
                     ))}

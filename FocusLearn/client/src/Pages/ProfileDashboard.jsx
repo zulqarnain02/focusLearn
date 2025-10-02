@@ -63,7 +63,7 @@ const ProfileDashboard = () => {
   return (
     <div className="min-h-screen bg-gray-900 text-white flex">
       {/* Sidebar */}
-      <aside className="w-64 bg-gray-800 p-6">
+      {/* <aside className="w-64 bg-gray-800 p-6">
         <div className="text-center text-xl font-bold mb-6">Dashboard</div>
         <nav>
           <ul>
@@ -92,10 +92,10 @@ const ProfileDashboard = () => {
             </li>
           </ul>
         </nav>
-      </aside>
+      </aside> */}
 
       {/* Main Content */}
-      <main className="flex-1 p-8">
+      <main className="flex-1 p-4 md:p-8">
         {/* Profile Section */}
         <section className="bg-gray-800 p-6 rounded-lg shadow-lg mb-8 flex justify-between px-8">
           <div className="flex  items-center">

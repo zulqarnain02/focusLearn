@@ -46,7 +46,7 @@ const Explore = () => {
       <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
         <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
           <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
-            <div className="w-full md:w-1/2">
+            <div className="w-full">
               <form className="flex items-center">
                 <label htmlFor="simple-search" className="sr-only">Search Journeys</label>
                 <div className="relative w-full">
@@ -62,10 +62,42 @@ const Explore = () => {
           </div>
           <div className="overflow-x-auto">
             {error ? (
-              <p className="text-red-500">{error}</p>
+              <p className="text-red-500 text-center py-4">{error}</p>
             ) : (
-              <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <>
+                {/* Mobile View */}
+                <div className="md:hidden">
+                  {journeys.map(journey => (
+                    <div key={journey.id} className="p-4 border-b dark:border-gray-700">
+                      <div className="flex justify-between">
+                        <h3 className="font-medium text-gray-900 dark:text-white">{journey.title}</h3>
+                        <span className="text-sm text-gray-500 dark:text-gray-400">{journey.username}</span>
+                      </div>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 my-2">
+                        {journey.description.length > 100 ? journey.description.substring(0, 100) + '...' : journey.description}
+                      </p>
+                      <div className="flex items-center justify-between mt-4">
+                        <Link to={`/notes/${journey.id}`}>
+                          <img src={notesLogo} width="30px" className="cursor-pointer" alt="Notes" />
+                        </Link>
+                        {user.username === journey.username ?
+                          <Link to={'/'} className="text-sm p-1 w-20 bg-gray-900 rounded-md flex justify-center items-center hover:bg-slate-600 gap-[2px] text-gray-400">
+                            <span>Your's 🌟</span>
+                          </Link>
+                          :
+                          <button onClick={() => handleFork(journey.id)} className="text-sm p-2 bg-gray-900 rounded-md flex justify-center items-center hover:bg-slate-600 gap-[2px]">
+                            <span>Fork</span>
+                            <img src={forklogo} className='invert' width={'15px'} alt="Fork" />
+                          </button>
+                        }
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Desktop View */}
+                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 hidden md:table">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
                     <th scope="col" className="px-4 py-4">Journey Name</th>
                     <th scope="col" className="px-4 py-3">Owner</th>
@@ -89,15 +121,15 @@ const Explore = () => {
                         </Link>
                       </td>
                       <td className="px-4 py-3 flex items-center justify-end">
-                        { user.username === journey.username ? 
+                        { user.username === journey.username ?
                          <Link to={'/'}
-                         className="text-sm p-1 w-20   bg-gray-900 rounded-md flex justify-center items-center hover:bg-slate-600 gap-[2px] ">
+                         className="text-sm p-1 w-20   bg-gray-900 rounded-md flex justify-center items-center hover:bg-slate-600 gap-[2px]">
                              <span>Your's 🌟</span>
-                            
+
                          </Link>
                          :
 
-                        <button 
+                        <button
                         onClick={()=>handleFork(journey.id)}
                         className="text-sm p-2   bg-gray-900 rounded-md flex justify-center items-center hover:bg-slate-600 gap-[2px] ">
                             <span>Fork</span>
@@ -109,6 +141,7 @@ const Explore = () => {
                   ))}
                 </tbody>
               </table>
+              </>
             )}
           </div>
         </div>
