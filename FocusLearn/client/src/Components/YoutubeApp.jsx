@@ -7,8 +7,8 @@ const YouTubeApp = ({ videoId }) => {
   const useIframe = true; // Set this to true for iframe, false for react-youtube
 
   const opts = {
-    height: '515',
-    width: '903',
+    height: '100%',
+    width: '100%',
     playerVars: {
       autoplay: 1, // Enable autoplay if desired
     },
@@ -17,21 +17,9 @@ const YouTubeApp = ({ videoId }) => {
   return (
     <div className='block'>
       {videoId ? (
-        // useIframe ? (
-        //   <iframe
-        //     title="YouTube Video"
-        //     width="560"
-        //     height="315"
-        //     src={`https://www.youtube.com/embed/${extractVideoId(videoId)}`}
-
-        //     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        //     allowFullScreen
-        //   />
-        // ) : (
-          <YouTube videoId={videoId} opts={opts} />
-          // Use react-youtube if preferred
-    
-        
+        <div className="relative pb-[56.25%] h-0 overflow-hidden">
+          <YouTube videoId={videoId} opts={opts} className="absolute top-0 left-0 w-full h-full" />
+        </div>
       ) : (
         <p>No video selected</p>
       )}
